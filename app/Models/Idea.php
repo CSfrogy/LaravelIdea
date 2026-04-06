@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Idea extends Model
 {
@@ -16,12 +17,22 @@ class Idea extends Model
 
     protected $casts
         = [
-            'links' => AsArrayObject::class,
+            'link' => AsArrayObject::class,
             'status' => IdeaStatus::class,
+        ];
+
+    protected $attributes
+        = [
+            'status' => IdeaStatus::PENDING->value,
         ];
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function steps(): HasMany
+    {
+        return $this->hasMany(Step::class);
     }
 }

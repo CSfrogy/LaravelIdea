@@ -3,13 +3,13 @@
 namespace Database\Factories;
 
 use App\Models\Idea;
-use App\Models\User;
+use App\Models\Step;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Idea>
+ * @extends Factory<Step>
  */
-class IdeaFactory extends Factory
+class StepFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,10 +19,9 @@ class IdeaFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
-            'title' => $this->faker->sentence(),
+            'idea_id' => Idea::factory(),
             'description' => $this->faker->paragraph(),
-            'link' => [fake()->url()],
+            'completed' => $this->faker->boolean(),
         ];
     }
 }

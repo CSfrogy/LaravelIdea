@@ -1,0 +1,47 @@
+button {
+    cursor: pointer;
+}
+
+.btn {
+    background: var(--color-primary);
+    border-radius: var(--radius-xl);
+    color: var(--color-primary-foreground);
+    padding-inline: calc(var(--spacing) * 3);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    height: calc(var(--spacing) * 8);
+    line-height: calc(var(--spacing) * 8);
+    display: inline-block;
+    transition: background 150ms ease;
+}
+
+.btn:hover {
+    background: oklch(0.44 0.22 262); /* slightly darker cobalt on hover */
+    text-decoration: none;
+}
+
+.btn.btn-outlined {
+    background: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--color-foreground);
+}
+
+.btn.btn-outlined:hover {
+    background: color-mix(in srgb, var(--color-background) 70%, var(--color-border) 30%);
+}
+
+.btn.btn-ghost {
+    background: transparent;
+    color: var(--color-foreground);
+}
+
+.btn.btn-ghost:hover {
+    background: color-mix(in srgb, var(--color-border) 30%, transparent 70%);
+}
+
+.btn:has(> svg) {
+    display: flex;
+    align-items: center;
+    column-gap: calc(var(--spacing) * 2);
+}
