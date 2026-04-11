@@ -10,6 +10,11 @@ enum IdeaStatus: string
     case COMPLETED = 'completed';
 
 
+    public static function values()
+    {
+        return array_map(fn($status) => $status->value, IdeaStatus::cases());
+    }
+
     public function label(): string
     {
         return match ($this) {

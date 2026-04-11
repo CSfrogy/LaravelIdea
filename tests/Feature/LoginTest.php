@@ -2,7 +2,7 @@
 
 use App\Models\User;
 
-it('login a user', function () {
+it('login a user', function (): void {
     $user = User::factory()->create([
         'password' => 'password',
     ]);
@@ -16,7 +16,7 @@ it('login a user', function () {
     $this->assertAuthenticated();
 });
 
-it('logs out a user', function () {
+it('logs out a user', function (): void {
     $user = User::factory()->create();
 
     $this->actingAs($user);

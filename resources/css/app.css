@@ -9,15 +9,30 @@
 @source '../**/*.js';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-    'Segoe UI Symbol', 'Noto Color Emoji';
+    /* ─── existing tokens ──────────────────────────── */
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
-    --color-background: oklch(0.98 0.003 95);        /* #fafaf8 warm off-white page bg */
-    --color-foreground: oklch(0.13 0.005 265);        /* #1a1a1a near-black text */
-    --color-card: oklch(1 0 0);                       /* #ffffff pure white cards */
-    --color-primary: oklch(0.51 0.22 262);            /* #2563eb cobalt blue */
-    --color-primary-foreground: oklch(1 0 0);         /* #ffffff text on primary */
-    --color-border: oklch(0.84 0.01 255);             /* #d1d5db light gray border */
-    --color-input: oklch(1 0 0);                      /* #ffffff white input bg */
-    --color-muted-foreground: oklch(0.48 0.02 255);   /* #6b7280 muted gray text */
+    --color-background: oklch(0.98 0.003 95);
+    --color-foreground: oklch(0.13 0.005 265);
+    --color-card: oklch(1 0 0);
+    --color-primary: oklch(0.51 0.22 262);
+    --color-primary-foreground: oklch(1 0 0);
+    --color-border: oklch(0.84 0.01 255);
+    --color-input: oklch(1 0 0);
+    --color-muted-foreground: oklch(0.48 0.02 255);
+
+    /* ─── new tokens ───────────────────────────────── */
+    /* cobalt at ~6% opacity — clean tint for subtle fills */
+    --color-primary-hover: oklch(0.44 0.22 262);   /* darker cobalt, replaces hardcoded hover */
+    --color-primary-subtle: oklch(0.95 0.04 262);   /* very light blue tint for outlined/ghost hover */
+    /* one step darker than --color-border, for input hover ring */
+    --color-border-strong: oklch(0.70 0.015 255);
+
+    /* warmer, more saturated red that reads clearly on oklch(0.98 0.003 95) */
+    --color-error: oklch(0.53 0.22 25);
+
+    /* success/warning if you need them later — same chroma family */
+    /* --color-success: oklch(0.52 0.17 145); */
+    /* --color-warning: oklch(0.60 0.18 70);  */
 }
