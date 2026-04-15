@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->text('description');
             $table->string('status')->default('pending');
             $table->string('image_path')->nullable();
-            $table->json('link')->nullable()->default(null);
+            $table->json('links')->nullable()->default(null);
             $table->timestamps();
         });
     }

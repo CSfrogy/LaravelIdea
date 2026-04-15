@@ -8,6 +8,7 @@ use App\IdeaStatus;
 use App\Models\Idea;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use JetBrains\PhpStorm\NoReturn;
 
 class IdeaController extends Controller
 {
@@ -19,15 +20,12 @@ class IdeaController extends Controller
         $user = Auth::user();
         $status = $request->status;
 
-        if (!in_array($status, array_column(IdeaStatus::cases(), 'value'))) {
-            $status = null;
-        }
-
-
         $ideas = $user
             ->ideas()
-            ->when($status,
-                fn($query, $status) => $query->where('status', $status))
+            ->when(in_array($request->status,
+                IdeaStatus::values()),
+                fn($query) => $query->where('status', $request->$status))
+            ->latest()
             ->get();
 
 
@@ -35,6 +33,17 @@ class IdeaController extends Controller
             'ideas' => $ideas,
             'statusCounts' => Idea::statusCounts(Auth::user()),
         ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    #[NoReturn]
+    public function store(StoreIdeaRequest $request)
+    {
+        Auth::user()->ideas()->create($request->validated());
+
+        return redirect()->route('idea.index');
     }
 
     /**
@@ -46,19 +55,13 @@ class IdeaController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreIdeaRequest $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      */
     public function show(Idea $idea)
     {
-        //
+        return view('idea.show', [
+            'idea' => $idea,
+        ]);
     }
 
     /**
@@ -82,6 +85,7 @@ class IdeaController extends Controller
      */
     public function destroy(Idea $idea)
     {
-        //
+        $idea->delete();
+        return to_route('idea.index');
     }
 }

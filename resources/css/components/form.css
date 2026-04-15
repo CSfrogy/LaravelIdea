@@ -22,23 +22,26 @@ label {
 }
 
 .input::placeholder {
-    color: var(--color-muted-foreground);
+    color: var(--color-muted-foreground); /* taupe #948979 — legible but clearly secondary */
 }
 
-/* NEW: hover gives a soft pre-focus cue without committing to primary */
+/* hover: lifts border one step toward taupe → soft pre-focus cue */
 .input:hover:not(:focus-visible) {
     border-color: var(--color-border-strong);
 }
 
 .input:focus-visible {
     outline: 0;
-    border-color: var(--color-primary);
-    /* inner ring uses --color-card, not hardcoded white — safe on any bg */
+    border-color: var(--color-primary); /* cream border on focus */
+    /* inner ring uses --color-card (dark slate), outer ring cream — readable on any surface depth */
     box-shadow: 0 0 0 calc(var(--spacing) * 0.5) var(--color-card),
     0 0 0 calc(var(--spacing) * 1) var(--color-primary);
 }
 
-@media (min-width: var(--breakpoint-md)) {
+/* ⚠ BUG NOTE: var() does not resolve inside @media conditions.
+   Replace var(--breakpoint-md) with a concrete value, e.g. 768px.
+   See: https://drafts.csswg.org/css-variables/#using-variables */
+@media (min-width: 768px) {
     .input {
         font-size: var(--text-sm);
     }
@@ -87,34 +90,35 @@ input[type=file] {
 input[type=file]::file-selector-button {
     margin-right: calc(var(--spacing) * 4);
     padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
-    border-radius: calc(var(--spacing) * 2);
+    border-radius: var(--radius-md); /* was calc(spacing * 2) — now consistent with input/btn */
     border-width: 0;
     font-size: 0.875rem;
     line-height: 1.25rem;
     font-weight: 500;
-    background-color: var(--color-primary);
+    background-color: var(--color-primary); /* cream button, dark text */
     color: var(--color-primary-foreground);
     transition: background 150ms ease;
 }
 
 input[type=file]::file-selector-button:hover {
-    background-color: var(--color-primary-hover); /* token, not magic number */
+    background-color: var(--color-primary-hover);
 }
 
 
 /* ─── Feedback & icons ────────────────────────────── */
 
-/* punchier red, tuned to the warm off-white background */
+/* warm red tuned to the dark background — same token as @theme */
 .error {
     font-size: var(--text-sm);
     color: var(--color-error);
 }
 
+/* taupe at rest → cream on hover: stays within palette, avoids jarring jumps */
 .form-muted-icon {
-    color: var(--color-muted-foreground);
+    color: var(--color-muted-foreground); /* #948979 taupe */
     transition: color 150ms ease;
 }
 
 .form-muted-icon:hover {
-    color: var(--color-foreground);
+    color: var(--color-foreground); /* lifts to cream #DFD0B8 */
 }

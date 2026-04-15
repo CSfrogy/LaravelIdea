@@ -22,7 +22,7 @@ class IdeaFactory extends Factory
             'user_id' => User::factory(),
             'title' => $this->faker->sentence(),
             'description' => $this->faker->paragraph(),
-            'link' => [fake()->url()],
+            'links' => [fake()->url()],
         ];
     }
 }

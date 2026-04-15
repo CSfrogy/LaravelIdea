@@ -1,12 +1,22 @@
+/* ─────────────────────────────────────────────────
+   Add these red tokens to your @theme block so
+   .btn-danger can reference them:
+
+   --color-red-50:  oklch(0.23 0.06 27);
+   --color-red-200: oklch(0.38 0.10 27);
+   --color-red-500: oklch(0.61 0.20 27);
+   --color-red-600: oklch(0.68 0.18 27);
+   ───────────────────────────────────────────────── */
+
 button {
     cursor: pointer;
 }
 
 .btn {
-    background: var(--color-primary);
-    border-radius: var(--radius-xl);
-    color: var(--color-primary-foreground);
-    padding-inline: calc(var(--spacing) * 3);
+    background: var(--color-primary); /* cream #DFD0B8  */
+    border-radius: var(--radius-md); /* grounded square-ish corners fit the earthy palette better than a pill */
+    color: var(--color-primary-foreground); /* dark #222831 on cream */
+    padding-inline: calc(var(--spacing) * 4); /* slightly more breathing room at the square radius */
     font-size: var(--text-sm);
     font-weight: var(--font-weight-medium);
     cursor: pointer;
@@ -17,11 +27,11 @@ button {
 }
 
 .btn:hover {
-    background: var(--color-primary-hover); /* token instead of magic number */
+    background: var(--color-primary-hover); /* lighter cream on hover */
     text-decoration: none;
 }
 
-/* outlined: border stays cobalt-hued on hover → feels intentional, not muddy */
+/* outlined: border warms to cream on hover → signals interactivity without harsh contrast */
 .btn.btn-outlined {
     background: transparent;
     border: 1px solid var(--color-border);
@@ -30,12 +40,12 @@ button {
 }
 
 .btn.btn-outlined:hover {
-    background: var(--color-primary-subtle);
-    border-color: var(--color-primary); /* border nudges blue → signals interactivity */
-    color: var(--color-primary); /* text also shifts, ties the states together */
+    background: var(--color-primary-subtle); /* dark warm tint fill */
+    border-color: var(--color-primary); /* border warms to cream  */
+    color: var(--color-primary); /* text shifts to cream, ties states together */
 }
 
-/* ghost: same tint logic, no border */
+/* ghost: same warm tint logic, no border */
 .btn.btn-ghost {
     background: transparent;
     color: var(--color-foreground);
@@ -47,8 +57,21 @@ button {
     color: var(--color-primary);
 }
 
+/* icon buttons: flex layout for svg + label */
 .btn:has(> svg) {
     display: flex;
     align-items: center;
     column-gap: calc(var(--spacing) * 2);
+}
+
+/* danger: warm red tuned to the earthy background */
+.btn.btn-outlined.btn-danger {
+    color: var(--color-red-500);
+    border-color: var(--color-red-200);
+}
+
+.btn.btn-outlined.btn-danger:hover {
+    background: var(--color-red-50);
+    border-color: var(--color-red-500);
+    color: var(--color-red-600);
 }

@@ -19,7 +19,7 @@ class Idea extends Model
 
     protected $casts
         = [
-            'link' => AsArrayObject::class,
+            'links' => AsArrayObject::class,
             'status' => IdeaStatus::class,
         ];
 
