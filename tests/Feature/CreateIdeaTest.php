@@ -11,13 +11,21 @@ it('creates an idea', function (): void {
         ->fill('description', 'some example description')
         ->fill('@new-link', 'https://youtube.com')
         ->click('@submit-new-link-button')
+        ->fill('@new-link', 'https://home.com')
+        ->click('@submit-new-link-button')
+        ->fill('@new-step', 'do smth')
+        ->click('@submit-new-step-button')
+        ->fill('@new-step', 'clean the sheet')
+        ->click('@submit-new-step-button')
         ->click('Create')
         ->assertPathIs('/ideas');
 
-    expect($user->ideas()->first())->toMatchArray([
-        'title' => 'some example',
-        'status' => 'completed',
+    expect($idea = $user->ideas()->first())->toMatchArray([
+        'title'       => 'some example',
+        'status'      => 'completed',
         'description' => 'some example description',
-        'links' => ['https://youtube.com'],
+        'links'       => ['https://youtube.com', 'https://home.com'],
     ]);
+
+    expect($idea->steps)->toHaveCount(2);
 });

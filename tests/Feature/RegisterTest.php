@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Auth;
 
 it('registres a user', function (): void {
     visit('/register')
@@ -6,7 +7,7 @@ it('registres a user', function (): void {
         ->fill('email', 'bulat@gmail.com')
         ->fill('password', 'password')
         ->click('Create Account')
-        ->assertPathIs('/');
+        ->assertPathIs('/ideas');
 
     $this->assertAuthenticated();
 
