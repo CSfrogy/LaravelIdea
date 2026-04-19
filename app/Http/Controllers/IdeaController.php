@@ -1,8 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Actions\CreateIdea;
+use App\Actions\UpdateIdea;
 use App\Http\Requests\IdeaRequest;
 use App\IdeaStatus;
 use App\Models\Idea;
@@ -17,7 +17,7 @@ class IdeaController extends Controller
      */
     public function index(Request $request)
     {
-        $user = Auth::user();
+        $user   = Auth::user();
         $status = $request->status;
 
         $ideas = $user
@@ -29,7 +29,7 @@ class IdeaController extends Controller
             ->get();
 
         return view('idea.index', [
-            'ideas' => $ideas,
+            'ideas'        => $ideas,
             'statusCounts' => Idea::statusCounts(Auth::user()),
         ]);
     }
@@ -76,12 +76,11 @@ class IdeaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(IdeaRequest $request, Idea $idea)
+    public function update(IdeaRequest $request, Idea $idea, UpdateIdea $action)
     {
-        dd($request->all());
+        dd($request->validated());
         Gate::authorize('workWith', $idea);
-        //
-
+        $action->handle($request->safe()->all(), $idea);
 
     }
 
