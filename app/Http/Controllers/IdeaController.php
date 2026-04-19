@@ -1,9 +1,9 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Actions\CreateIdea;
-use App\Http\Requests\StoreIdeaRequest;
-use App\Http\Requests\UpdateIdeaRequest;
+use App\Http\Requests\IdeaRequest;
 use App\IdeaStatus;
 use App\Models\Idea;
 use Illuminate\Http\Request;
@@ -17,7 +17,7 @@ class IdeaController extends Controller
      */
     public function index(Request $request)
     {
-        $user   = Auth::user();
+        $user = Auth::user();
         $status = $request->status;
 
         $ideas = $user
@@ -29,7 +29,7 @@ class IdeaController extends Controller
             ->get();
 
         return view('idea.index', [
-            'ideas'        => $ideas,
+            'ideas' => $ideas,
             'statusCounts' => Idea::statusCounts(Auth::user()),
         ]);
     }
@@ -38,19 +38,18 @@ class IdeaController extends Controller
      * Store a newly created resource in storage.
      */
 
-    public function store(StoreIdeaRequest $request, CreateIdea $action)
+    public function store(IdeaRequest $request, CreateIdea $action)
     {
-
         $action->handle($request->safe()->all());
 
         return redirect()->route('idea.index');
     }
+
     /**
      * Show the form for creating a new resource.
      */
     public function create(Idea $idea)
     {
-
         //
     }
 
@@ -77,10 +76,13 @@ class IdeaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateIdeaRequest $request, Idea $idea)
+    public function update(IdeaRequest $request, Idea $idea)
     {
+        dd($request->all());
         Gate::authorize('workWith', $idea);
         //
+
+
     }
 
     /**
