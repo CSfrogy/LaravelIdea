@@ -18,8 +18,8 @@ it('creates an idea', function (): void {
         ->click('@submit-new-step-button')
         ->fill('@new-step', 'clean the sheet')
         ->click('@submit-new-step-button')
-        ->click('Create')
-        ->assertPathIs('/ideas');
+        ->click('Update')
+        ->assertRoute('/');
 
     expect($idea = $user->ideas()->first())->toMatchArray([
         'title' => 'some example',
@@ -31,7 +31,7 @@ it('creates an idea', function (): void {
     expect($idea->steps)->toHaveCount(2);
 });
 
-it('edit an existing new idea', function () {
+it('edits an existing new idea', function () {
     $this->actingAs($user = User::factory()->create());
 
     $idea = Idea::factory()->for($user)->create();
@@ -49,8 +49,8 @@ it('edit an existing new idea', function () {
         ->click('@submit-new-step-button')
         ->fill('@new-step', 'clean the sheet')
         ->click('@submit-new-step-button')
-        ->click('Create')
-        ->assertPathIs('/ideas');
+        ->click('Update')
+        ->assertRoute('idea.show', [$idea]);
 
     expect($idea = $user->ideas()->first())->toMatchArray([
         'title' => 'some example',
