@@ -22,9 +22,9 @@ class UpdateIdea
 
             $idea->update($data);
 
-            $steps = collect($attributes['steps'] ?? [])->map(fn($step) => ['description' => $step]);
+            $idea->steps()->delete();
 
-            $idea->steps()->createMany($steps);
+            $idea->steps()->createMany($attributes['steps'] ?? []);
         });
 
     }
