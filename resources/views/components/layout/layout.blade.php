@@ -22,7 +22,7 @@
         x-init="setTimeout(()=> show = false, 3000)"
         x-show="show"
         x-transition.opacity.duration.300ms
-        class=" bg-card text-foreground border border-border px-2 py-3 absolute bottom-4 right-4 rounded-lg">
+        class=" bg-card text-white border border-border px-8 py-3 min-w absolute bottom-4 right-4 rounded-lg">
     {{$value}}
 </div>
 @endsession

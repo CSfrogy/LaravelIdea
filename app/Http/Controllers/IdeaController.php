@@ -80,7 +80,7 @@ class IdeaController extends Controller
     {
         Gate::authorize('workWith', $idea);
         $action->handle($request->safe()->all(), $idea);
-        return back()->with('success','Idea Updated!');
+        return back()->with('success', 'Idea Updated!');
     }
 
     /**
