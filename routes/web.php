@@ -5,6 +5,7 @@ use App\Http\Controllers\IdeaImageController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\StepController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/ideas');
@@ -37,4 +38,14 @@ Route::get('/login', [SessionController::class, 'create'])->middleware('guest')
     ->name('login');
 Route::post('/login', [SessionController::class, 'store'])->middleware('guest');
 Route::post('/logout', [SessionController::class, 'destroy'])
-    ->middleware('auth');
+    ->middleware('auth')
+    ->name('logout');
+Route::get('/profile/edit', [ProfileController::class, 'edit'])
+    ->middleware('auth')
+    ->name('profile.edit');
+Route::patch('/profile', [ProfileController::class, 'update'])
+    ->middleware('auth')
+    ->name('profile.update');
+Route::patch('/profile/image', [ProfileController::class, 'updateImage'])
+    ->middleware('auth')
+    ->name('profile.image.update');
