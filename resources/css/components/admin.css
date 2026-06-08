@@ -1,0 +1,104 @@
+@layer components {
+
+    .stat-card {
+        background: var(--color-card);
+        border: 0.5px solid var(--color-border);
+        border-radius: 12px;
+        padding: 1rem 1.25rem;
+    }
+
+    .stat-label {
+        font-size: 12px;
+        color: var(--color-muted-foreground);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 6px;
+    }
+
+    .stat-value {
+        font-size: 26px;
+        font-weight: 500;
+        color: var(--color-foreground);
+    }
+
+    .section-label {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--color-muted-foreground);
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        margin-bottom: 10px;
+    }
+
+    .table-wrap {
+        background: var(--color-card);
+        border: 0.5px solid var(--color-border);
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .table-wrap table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+    }
+
+    .table-wrap thead th {
+        background: var(--color-input);
+        color: var(--color-muted-foreground);
+        font-weight: 500;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        padding: 10px 16px;
+        text-align: left;
+        border-bottom: 0.5px solid var(--color-border);
+    }
+
+    .table-wrap tbody tr {
+        border-bottom: 0.5px solid var(--color-border);
+        transition: background 0.15s;
+    }
+
+    .table-wrap tbody tr:last-child {
+        border-bottom: none;
+    }
+
+    .table-wrap tbody tr:hover {
+        background: var(--color-primary-subtle);
+    }
+
+    .table-wrap tbody td {
+        padding: 11px 16px;
+        color: var(--color-foreground);
+        vertical-align: middle;
+    }
+
+    .muted {
+        color: var(--color-muted-foreground);
+        font-size: 13px;
+    }
+
+    .badge {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 500;
+        padding: 3px 9px;
+        border-radius: 20px;
+    }
+
+    .badge-pending {
+        background: oklch(0.30 0.05 60);
+        color: oklch(0.80 0.10 70);
+    }
+
+    .badge-approved {
+        background: oklch(0.24 0.06 160);
+        color: oklch(0.72 0.14 155);
+    }
+
+    .badge-rejected {
+        background: oklch(0.28 0.08 25);
+        color: oklch(0.75 0.14 27);
+    }
+}

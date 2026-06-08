@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\IdeaImageController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\StepController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/ideas');
@@ -49,3 +50,6 @@ Route::patch('/profile', [ProfileController::class, 'update'])
 Route::patch('/profile/image', [ProfileController::class, 'updateImage'])
     ->middleware('auth')
     ->name('profile.image.update');
+
+Route::get('/admin', [AdminController::class, 'index'])
+    ->middleware('auth', 'can:admin')->name('admin.dashboard');
